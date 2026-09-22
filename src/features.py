@@ -7,6 +7,12 @@
     테스트 구간의 분산 정보가 훈련으로 새어 들어온다. sklearn 의 StandardScaler 를
     fit 한 뒤 transform 하는 것과 같은 규율이다.
   · dropna 순서가 중요하다. lag 를 만든 뒤 dropna 해야 앞 L 분기가 정확히 빠진다.
+
+AR 항(y_{q−1}) 은 기본으로 **쓰지 않는다**.
+이유는 정확도가 아니라 비교 가능성이다. 공모자산 모델은 r = a + b'F 뿐이므로, 대체투자에만
+자기 과거 수익률을 넣으면 팩터가 설명해야 할 몫을 AR 항이 먼저 가져가 베타가 깎인다.
+두 자산군의 베타를 한 표에 놓으려면 오른쪽 변수 집합이 같아야 한다.
+include_ar=True 는 원본 factor-nowcasting 백테스트를 재현하는 회귀 테스트에서만 쓴다.
 """
 from __future__ import annotations
 
@@ -29,7 +35,8 @@ def lag_panel(fq: pd.DataFrame, lags: int) -> pd.DataFrame:
 def build_design(fq: pd.DataFrame, y: pd.Series, lags: int, include_ar: bool) -> tuple[pd.DataFrame, pd.Series]:
     """(X, y) 를 만든다. X 와 y 가 모두 관측된 분기만 남긴다.
 
-    X 열 = lag_panel(fq, lags) 의 모든 열 + (include_ar 이면) `y_l1` = y.shift(1).
+    X 열 = lag_panel(fq, lags) 의 모든 열 + (include_ar=True 일 때만) `y_l1` = y.shift(1).
+    기본 연구 설정은 include_ar=False 다 (config/step1.yaml 참고).
 
     주의: y 는 시리즈마다 시작 분기가 다르고 팩터보다 이력이 길다. y.shift(1) 은
     **팩터 패널이 아니라 y 자신의 분기 인덱스** 위에서 해야 2006Q2 의 y_{q−1}(=2006Q1)이 살아남는다.

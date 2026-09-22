@@ -32,6 +32,9 @@ def test_expanding_splits_never_see_future():
 
 
 def test_walk_forward_matches_source_ols():
-    """walk_forward + OLS 가 factor-nowcasting 의 backtest_preds_<code>.csv 의 `ols` 열을
-    1e-8 이내로 재현한다. 파이프라인이 원본과 같은 정보집합을 쓰는지 보는 회귀 테스트.
-    원천 저장소가 없으면 skip. TODO"""
+    """배관 검증용 회귀 테스트 — **여기서만** include_ar=True 를 쓴다.
+
+    원본 factor-nowcasting 의 `ols` 벤치마크는 y_q = c + φ y_{q−1} + b'F_q 다.
+    같은 설정으로 walk_forward 를 돌려 backtest_preds_<code>.csv 의 `ols` 열을 1e-8 이내로
+    재현하면, 내 파이프라인이 원본과 같은 정보집합(훈련 구간·시차·dropna)을 쓴다는 증거가 된다.
+    연구용 설정(AR 항 없음)과는 별개다. 원천 저장소가 없으면 skip. TODO"""
