@@ -1,0 +1,6 @@
+# 읽기 전용 원천 저장소. 환경변수가 있으면 그것을 우선한다.
+#   FACTOR_NOWCASTING_ROOT : 대체투자 분기 수익률 + altnow 패키지 (liskay93/factor-nowcasting)
+#   MACRO_FACTOR_ROOT      : 매크로 팩터 일간 수익률 (liskay93/macro_factor)
+factor_nowcasting_root: ../factor-nowcasting
+macro_factor_root: ../macro_factor
+processed: data/processed

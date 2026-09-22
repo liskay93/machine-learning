@@ -1,0 +1,16 @@
+code,index,group,labels
+buyout,Burgiss Buyout Index,PE,Buyout
+vc,Burgiss Venture Capital Index,PE,Growth|Venture Capital
+fof_secondary,Burgiss FoF Secondary Equity Index,PE,Fund of Fund|GP-Stake / Continuation Vehicle
+fof_primary,Burgiss FoF Primary Equity Index,PE,Long-term Core
+senior_loan,Burgiss Senior Loan Index,PE,Senior Credit
+mezzanine,Burgiss Mezzanine Index,PE,Junior Credit
+apac_equity,Burgiss Equity Index (Asia & Pacific),PE,국내 사모투자
+hfri_fof_cons,HFRI FoF: Conservative Index,HF,Hedge Fund
+msci_gpfi,MSCI Global Property Fund Index,RE,Core RE Equity|국내 부동산
+re_noncore,"Burgiss Real Estate Equity Index (value-add, Opportunistic)",RE,Non-Core RE Equity
+gl1,Giliberto-Levy Commercial Mortgage Performance Index (G-L 1),RE,Core RE Debt
+gl2,Giliberto-Levy High-Yield Real Estate Debt Index (G-L 2),RE,Non-Core RE Debt
+epra_nareit,FTSE EPRA/NAREIT Developed Index,RE,Listed RE
+infra_core,Burgiss Infrastructure Equity Index (Core),INFRA,Core 국내 인프라|Non-Core 국내 인프라|Core 해외 인프라|Non-Core 해외 인프라
+ftse_fi_infra,FTSE Fixed Income Core Infrastrue Index,INFRA,Super-Core Infrastructure

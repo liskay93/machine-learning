@@ -1,0 +1,27 @@
+# 1단계 — OLS → Ridge/Lasso/ElasticNet → LightGBM. 정규화·과적합·튜닝 학습용 설정.
+
+# 주 학습 대상: 팩터가 잘 먹는 시리즈 하나 + 안 먹는 시리즈 둘. "언제 지는지"를 보려면 둘 다 필요하다.
+targets:
+  primary: buyout            # R²_OOS(OLS) 0.67. 팩터 신호가 분명한 쪽
+  contrast: [re_noncore, msci_gpfi]   # 감정평가 부동산. AR(1) 이 팩터를 이긴다
+  all: [buyout, vc, fof_secondary, fof_primary, senior_loan, mezzanine, apac_equity,
+        hfri_fof_cons, msci_gpfi, re_noncore, gl1, gl2, epra_nareit, infra_core, ftse_fi_infra]
+
+features:
+  factor_lags: 4             # F_q lag 0..4. lag 0 = 동분기 (nowcast 이므로 허용)
+  include_ar: true           # y_{q-1}
+  standardize: true          # 훈련 표본 기준. 벌점 모델은 스케일에 민감하다
+
+cv:
+  oos_start: "2012-03-31"    # 첫 OOS 분기. factor-nowcasting 백테스트와 같게 맞춰 비교 가능하게 한다
+  min_train_quarters: 20     # 바깥 루프: 이만큼 쌓여야 예측 시작
+  inner_min_train: 20        # 안쪽 루프(하이퍼파라미터 선택): 훈련창 안 첫 검증점 이전 최소 관측 수
+  embargo_quarters: 0        # 분기 표본은 겹치지 않으므로 0. 중복 라벨을 쓸 때 올린다 (De Prado purging)
+
+models:
+  ridge_alphas:       [0.01, 0.03, 0.1, 0.3, 1, 3, 10, 30, 100]
+  lasso_alphas:       [0.0001, 0.0003, 0.001, 0.003, 0.01, 0.03, 0.1]
+  enet_alphas:        [0.0001, 0.0003, 0.001, 0.003, 0.01, 0.03, 0.1]
+  enet_l1_ratios:     [0.1, 0.3, 0.5, 0.7, 0.9]
+
+seed: 42

@@ -1,0 +1,33 @@
+{
+  "factors": [
+    "growth",
+    "term",
+    "inflation",
+    "credit"
+  ],
+  "series": [
+    "buyout",
+    "vc",
+    "fof_secondary",
+    "fof_primary",
+    "senior_loan",
+    "mezzanine",
+    "apac_equity",
+    "hfri_fof_cons",
+    "msci_gpfi",
+    "re_noncore",
+    "gl1",
+    "gl2",
+    "epra_nareit",
+    "infra_core",
+    "ftse_fi_infra"
+  ],
+  "first_quarter": "2000-03-31",
+  "first_factor_quarter": "2006-06-30",
+  "last_factor_quarter": "2026-06-30",
+  "last_alt_quarter": "2026-03-31",
+  "n_quarters": 106,
+  "factor_asof": "2026-09-15",
+  "source_factor_nowcasting": "/home/user/liskay93/factor-nowcasting",
+  "source_macro_factor": "/home/user/macro_factor"
+}
